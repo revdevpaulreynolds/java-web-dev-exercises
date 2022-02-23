@@ -10,7 +10,11 @@ public class Menu {
         return selections;
     }
 
-    public void setSelections(MenuItem menuItem) {
+    public void setSelections(ArrayList<MenuItem> aSelections) {
+        selections = aSelections;
+    }
+
+    public void addSelection(MenuItem menuItem) {
         selections.add(menuItem);
     }
 

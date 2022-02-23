@@ -5,8 +5,8 @@ public class Student {
     private static int nextStudentId = 1;
     private String name;
     private int studentId;
-    private int numberOfCredits = 0;
-    private double gpa = 0.0;
+    private int numberOfCredits;
+    private double gpa;
 
     public Student (String name, int studentId, int numberOfCredits, double gpa) {
         this.name = name;
@@ -30,20 +30,59 @@ public class Student {
 
 
      //TODO: Uncomment and complete the getGradeLevel method here:
-//    public String getGradeLevel() {
-//        // Determine the grade level of the student based on numberOfCredits
-//    }
+     public String getGradeLevel() {
+         // Determine the grade level of the student based on numberOfCredits
+
+         if (this.numberOfCredits < 30) {
+             return "Freshman";
+         } else if (this.numberOfCredits < 60) {
+             return "Sophomore";
+         } else if (this.numberOfCredits < 90) {
+             return "Junior";
+         } else {
+             return "Senior";
+         }
+
+     }
 
     // TODO: Complete the addGrade method.
     public void addGrade(int courseCredits, double grade) {
         // Update the appropriate fields: numberOfCredits, gpa
+
+        double classQualityScore = grade * courseCredits;
+        double currentQualityScore = gpa * numberOfCredits;
+        double newQualityScore = classQualityScore + currentQualityScore;
+        numberOfCredits += courseCredits;
+        gpa = (double) Math.round((newQualityScore / numberOfCredits)*100)/100;
+
     }
 
     // TODO: Add your custom 'toString' method here. Make sure it returns a well-formatted String rather
     //  than just the class fields.
 
+    public String toString() {
+        return "Student " + name + " (" + studentId + ") is a " + getGradeLevel() + " with a gpa of " + gpa + ".";
+    }
+
     // TODO: Add your custom 'equals' method here. Consider which fields should match in order to call two
     //  Student objects equal.
+
+    public boolean equals(Object aStudent) {
+        if (aStudent == this) {
+            return true;
+        }
+
+        if (aStudent == null) {
+            return false;
+        }
+
+        if (aStudent.getClass() != getClass()) {
+            return false;
+        }
+
+        Student theStudent = (Student) aStudent;
+        return theStudent.getStudentId() == getStudentId();
+    }
 
     public String getName() {
         return name;
