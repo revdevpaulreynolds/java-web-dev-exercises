@@ -25,4 +25,6 @@ public class Menu {
     public void setLastUpdated(Date aLastUpdated) {
         lastUpdated = aLastUpdated;
     }
+
+
 }
